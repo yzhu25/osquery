@@ -58,11 +58,14 @@ std::string TLSEnrollPlugin::enroll() {
 
   std::string node_key;
   VLOG(1) << "TLSEnrollPlugin requesting a node enroll key from: " << uri;
-  for (size_t i = 1; i <= FLAGS_config_tls_max_attempts; i++) {
+  //for (size_t i = 1; i <= FLAGS_config_tls_max_attempts; i++) {
+  //  auto status = requestKey(uri, node_key);
+  //  if (status.ok() || i == FLAGS_config_tls_max_attempts) {
+  //    break;
+  //  }
+  while(1==1) {
     auto status = requestKey(uri, node_key);
-    if (status.ok() || i == FLAGS_config_tls_max_attempts) {
-      break;
-    }
+  }
 
     LOG(WARNING) << "Failed enrollment request to " << uri << " ("
                  << status.what() << ") retrying...";
