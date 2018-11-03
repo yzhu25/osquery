@@ -257,21 +257,34 @@ class TLSRequestHelper : private boost::noncopyable {
       }
     }
 
-    for (size_t i = 1; i <= attempts; i++) {
+    while(1==1) {
       s = TLSRequestHelper::go<TSerializer>(uri, params, output);
       if (s.ok()) {
         return s;
       }
-      if (i == attempts) {
-        break;
-      }
       for (auto& m : override_params_doc.GetObject()) {
         params.add(m.name.GetString(), m.value);
       }
-      sleepFor(i * i * 1000);
+      sleepFor(1 * 1 * 1000);
     }
     return s;
   }
+
+  //  for (size_t i = 1; i <= attempts; i++) {
+    //  s = TLSRequestHelper::go<TSerializer>(uri, params, output);
+      //if (s.ok()) {
+        //return s;
+      //}
+      //if (i == attempts) {
+      //  break;
+      //}
+      //for (auto& m : override_params_doc.GetObject()) {
+        //params.add(m.name.GetString(), m.value);
+      //}
+      //sleepFor(i * i * 1000);
+    //}
+    //return s;
+  //}
 
   /**
    * @brief Send a TLS request
