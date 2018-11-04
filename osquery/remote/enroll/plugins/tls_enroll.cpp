@@ -65,6 +65,9 @@ std::string TLSEnrollPlugin::enroll() {
   //  }
   while(1==1) {
     auto status = requestKey(uri, node_key);
+    if (status.ok()) {
+      break;
+    }
   }
 
     LOG(WARNING) << "Failed enrollment request to " << uri << " ("
