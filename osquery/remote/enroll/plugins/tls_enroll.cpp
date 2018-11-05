@@ -68,11 +68,10 @@ std::string TLSEnrollPlugin::enroll() {
     if (status.ok()) {
       break;
     }
-  }
 
     LOG(WARNING) << "Failed enrollment request to " << uri << " ("
                  << status.what() << ") retrying...";
-    sleepFor(i * i * 1000);
+    sleepFor(1 * 1 * 1000);
   }
 
   return node_key;
