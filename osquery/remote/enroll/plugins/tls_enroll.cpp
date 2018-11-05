@@ -120,4 +120,3 @@ Status TLSEnrollPlugin::requestKey(const std::string& uri,
   }
   return Status(0, "OK");
 }
-}
