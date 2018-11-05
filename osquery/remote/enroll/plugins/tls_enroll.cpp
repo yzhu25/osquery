@@ -65,11 +65,13 @@ std::string TLSEnrollPlugin::enroll() {
   //  }
   while(1==1) {
     auto status = requestKey(uri, node_key);
-  }
+    if (status.ok()) {
+      break;
+    }
 
     LOG(WARNING) << "Failed enrollment request to " << uri << " ("
                  << status.what() << ") retrying...";
-    sleepFor(i * i * 1000);
+    sleepFor(1 * 1 * 1000);
   }
 
   return node_key;
@@ -117,5 +119,4 @@ Status TLSEnrollPlugin::requestKey(const std::string& uri,
     return Status(1, "No node key returned from TLS enroll plugin");
   }
   return Status(0, "OK");
-}
 }
